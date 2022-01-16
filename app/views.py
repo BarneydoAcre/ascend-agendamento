@@ -22,7 +22,7 @@ def agendar(request):
         if form.is_valid():
             form.save()
             
-            busy = Availability.objects.get(id=1)
+            busy = Availability.objects.get(id=request.POST['availability'])
             busy.busy = True
             busy.save()
             messages.add_message(request, messages.INFO, 'Cadastro Realizado!')
@@ -30,7 +30,7 @@ def agendar(request):
         else:
             form = CreateOrder()
 
-            busy = Availability.objects.get(id=1)
+            busy = Availability.objects.get(id=request.POST['availability'])
             busy.busy = False
             busy.save()
     messages.add_message(request, messages.INFO, 'Agendamento mal sucedido!')
