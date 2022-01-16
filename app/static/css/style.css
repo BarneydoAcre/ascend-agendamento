@@ -11,7 +11,7 @@ body>.container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 
     height: 100%;
 }
@@ -72,4 +72,11 @@ a {
 }
 .btn-menu-item {
     background: linear-gradient(145deg, #ed6e70, #ff9595);
+}
+
+.folium-map {
+    width: 90%;
+    height: 200px;
+
+    box-shadow:  4px 4px 20px 1px #7e7e7e;
 }

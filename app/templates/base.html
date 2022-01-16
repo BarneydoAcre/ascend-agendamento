@@ -4,6 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- MAPA -->
+    <!-- #### -->
+    <!-- #### -->
+
+    <script>
+        L_NO_TOUCH = false;
+        L_DISABLE_3D = false;
+    </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    <style>
+        #map_0f7423b8f2f14c92838ed1625dd35edf {
+            position: relative;
+            width: 100.0%;
+            height: 100.0%;
+            left: 0.0%;
+            top: 0.0%;
+        }
+    </style>
+        
+    <!-- #### -->
+    <!-- #### -->
+    <!-- #### -->
+    
     {% load crispy_forms_tags %}
     {% load static %}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
@@ -13,17 +49,32 @@
     <title>{% block title %}M.I. | Studio{% endblock %}</title>
 </head>
 <body>
-    <header>
+    <header style='position: sticky; top: 0; z-index: 10; background-color: white;'>
         <div class="container">
             <img class='header-logo-img' src="{% static 'public/logo.svg' %}">
         </div>
-    </header>  
+    </header> 
     
     <div class="container">
         {% block content %}{% endblock %}
     </div>
+    <div class="container" style='height: auto;'>
+        <!-- MAPA -->
+        <!-- #### -->
+        <!-- #### -->
+
+        <h4>Agende uma visita!</h4>
+        <p>Clique para ir ao mapa!</p>
+        <a href="https://www.google.com.br/maps/place/Cell+Mania+(Loja+1)/@-22.239801,-54.8384484,18z/data=!4m5!3m4!1s0x9489a9d454f2fb11:0x918605114d50160a!8m2!3d-22.2396519!4d-54.8377579">
+            <div class="folium-map" id="map_0f7423b8f2f14c92838ed1625dd35edf" style='width: 90%; height: 200px; margin-bottom: 50px; z-index: -1;'></div>
+        </a>
+            
+        <!-- #### -->
+        <!-- #### -->
+        <!-- #### -->
+    </div>
     
-    <div class="fixed-action-btn">
+    <div class="fixed-action-btn" style='z-index: 11;'>
         <a class="btn-floating btn-large red btn-menu">
             <i class="large material-icons-outlined">
                 {% if user.is_authenticated %}
@@ -59,9 +110,9 @@
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
             </div>
         </div>
-    </div>
+    </div>  
 
-<!-- Script -->
+    <!-- Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{% static 'js/js.js' %}"></script>
     <script>
@@ -87,5 +138,49 @@
         M.toast({html: '{{ message }}'})
     </script>
     {% endfor %}
+
+    <!-- MAPA -->
+    <!-- #### -->
+    <!-- #### -->
+
+    <script>   
+            var map_0f7423b8f2f14c92838ed1625dd35edf = L.map(
+                "map_0f7423b8f2f14c92838ed1625dd35edf",
+                {
+                    center: [-22.239262, -54.837849],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 13,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            var tile_layer_53cd7976d04647ae90a02eef6d58bd2d = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_0f7423b8f2f14c92838ed1625dd35edf);
+        
+            var marker_1a8fa948c16a4379996e5310122d92d4 = L.marker(
+                [-22.23949, -54.837697],
+                {}
+            ).addTo(map_0f7423b8f2f14c92838ed1625dd35edf);
+        
+            var popup_2e49d0d9f0d946d5966539ac5c3b7188 = L.popup({"maxWidth": "100%"});
+            var html_c88ff07eb601471786415a78257c379d = $(`<div id="html_c88ff07eb601471786415a78257c379d" style="width: 100.0%; height: 100.0%;"><i>M.I. Studio</i></div>`)[0];
+            popup_2e49d0d9f0d946d5966539ac5c3b7188.setContent(html_c88ff07eb601471786415a78257c379d);
+            marker_1a8fa948c16a4379996e5310122d92d4.bindPopup(popup_2e49d0d9f0d946d5966539ac5c3b7188);
+
+            marker_1a8fa948c16a4379996e5310122d92d4.bindTooltip(
+                `<div>
+                    Clique Aqui!
+                </div>`,
+            {"sticky": true}
+        );      
+    </script>
+
+    <!-- #### -->
+    <!-- #### -->
+    <!-- #### -->
+
 </body>
 </html>

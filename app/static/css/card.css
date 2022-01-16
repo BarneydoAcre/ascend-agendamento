@@ -1,7 +1,7 @@
 .card {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   width: 90%;
   height: 150px;
   margin: 10px;
@@ -88,13 +88,18 @@
   display: flex;
   justify-content: center;
 }
+.card-login-action {
+  display: flex;
+  justify-content: center;
+}
 .card-login-action>button {
-  margin-left: 5px;
+  margin-right: 5px;
 }
 .card-login-action>a {
   width: auto;
   color:rgb(65, 65, 65);
   background-color: rgb(255, 255, 255);
+  margin-left: 5px;
 }
 
 
