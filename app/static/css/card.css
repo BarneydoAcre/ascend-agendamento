@@ -27,6 +27,7 @@
   margin-right: 10px;
 }
 .card-title {
+  font-size: 20px !important;
   margin: 1%;
 }
 .card-subtitle {

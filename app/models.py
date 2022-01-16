@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Service(models.Model):
     title = models.CharField(max_length=50)
-    desc =  models.CharField(max_length=150)
+    desc =  models.CharField(max_length=150, blank=True)
     image = models.FileField(upload_to='app/static/public/service_images/', blank=True)
     price = models.FloatField()
     sold_off = models.BooleanField(default=False)
