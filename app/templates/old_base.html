@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load crispy_forms_tags %}
+    {% load static %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/card.css' %}" rel='stylesheet'>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo" style='min-height: 100px;'>
+                <h1 style='color: white;'>M.I. Studio</h1>
+                <!-- <img class="logo-img" src="{% static 'public/produto_teste.jpg' %}"> -->
+            </div>
+        </header>
+        {% block content %}{% endblock %}
+    </div>
+    
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons-outlined">
+                {% if user.is_authenticated %}
+                person
+                {% else %}
+                person_off
+                {% endif %}
+            </i>
+        </a>
+        <ul>
+            {% if user.is_authenticated %}
+            {% else %}
+            <li><a class="btn-floating waves-effect blue waves-light btn" href="/account/login/"><i class='material-icons-outlined'>person</i></a></li>
+            {% endif %}
+            
+            {% if user.is_authenticated %}
+            <li><a class="btn-floating waves-effect red waves-light btn modal-trigger" href="#modal-agendamento"><i class="material-icons-outlined">checklist</i></a></li>
+            <li><a class="btn-floating waves-effect blue waves-light btn modal-trigger" href="#modal-logout"><i class="material-icons-outlined">logout</i></a></li>
+            {% endif %}
+            <li><a class="btn-floating blue" href="/"><i class='material-icons-outlined'>home</i></a></li>
+        </ul>
+    </div>
+
+
+    <!-- Modal Logout -->
+    <div id="modal-logout" class="modal">
+        <div class="modal-content">
+            <h5 class="card-title" style='color: #031d44;'>Realmente deseja desconectar?</h5>
+            <div class="modal-footer">
+                <form action='/account/logout/' method='post'>
+                    {% csrf_token %}
+                    <button type='submit' class='btn red waves-effect red waves-light'>Sair</button>
+                </form>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{% static 'js/js.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.fixed-action-btn');
+            var instances = M.FloatingActionButton.init(elems);
+        });
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems, {
+            });
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        });
+        </script>
+        
+        {% for message in messages %}
+            <script>
+                M.toast({html: '{{ message }}'})
+            </script>
+        {% endfor %}
+        {% block scripts %}{% endblock %}
+</body>
+</html>

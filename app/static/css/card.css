@@ -1,0 +1,103 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90%;
+  height: 150px;
+  margin: 10px;
+  padding: 5px;
+
+  border-radius: 5px;
+  background: linear-gradient(145deg, #f18c8e, #f3ecd9);
+  box-shadow:  5px 5px 35px #9d9d9d,
+              -5px -5px 35px #ffffff;
+}
+.card-desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  width: 50%;
+  height: 100%;
+}
+.card-img {
+  border-radius: 5px;
+  width: 50%;
+  height: 100%;
+  margin-right: 10px;
+}
+.card-title {
+  margin: 1%;
+}
+.card-subtitle {
+  margin: 0 1% 1% 1%;
+  word-break: break-word;
+}
+.card-price {
+  margin-top: 10px;
+  margin-right: 1%;
+  margin-left: 1%;
+}
+.card-div-btn {
+  width: 20%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-btn {
+  text-decoration: none;
+  background-color: rgb(2, 66, 139);
+  color: white;
+  width: 80%;
+  height: 30px;
+  border-radius: 3px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-btn:hover {
+  background: rgb(0, 94, 202);
+  transition: background-color 0.1s;
+  transition-timing-function: ease-in-out;
+}
+
+
+
+/* LOGIN CARD */
+.row {
+  display: flex;
+  justify-content: center;
+}
+.card-login {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 10%;
+  padding: 25px;
+  background: linear-gradient(145deg, #f18c8e, #f3ecd9);
+}
+.card-login-title {
+  display: flex;
+  justify-content: center;
+}
+.card-login-content {
+  display: flex;
+  justify-content: center;
+}
+.card-login-action>button {
+  margin-left: 5px;
+}
+.card-login-action>a {
+  width: auto;
+  color:rgb(65, 65, 65);
+  background-color: rgb(255, 255, 255);
+}
+
+
+::placeholder{ 
+  color:rgb(65, 65, 65);
+}

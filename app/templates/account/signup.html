@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}M.I. Studio | Registrar{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card-login">
+        <form method='post'>
+            {% csrf_token %}
+            <h5 class="card-login-title">Registrar</h5>
+            <div class="card-login-content">
+                <div class="input-field">
+                    <ul>
+                        {{ form.as_ul }}
+                    </ul>
+                </div>
+            </div>
+            <div class="card-login-action">
+                <button type='submit' class='btn pink accent-5'>Registrar</button>
+                <a href="/account/login/" class="btn">Entrar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
