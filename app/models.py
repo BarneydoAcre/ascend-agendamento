@@ -54,7 +54,7 @@ class Availability(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        title_return = str(self.weekly_day) + ' | ' + str(self.daily_hour)
+        title_return = str(self.get_weekly_day_display()) + ' | ' + str(self.get_daily_hour_display())
         return title_return
         
 
