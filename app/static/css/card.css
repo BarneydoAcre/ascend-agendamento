@@ -8,7 +8,7 @@
   padding: 5px;
 
   border-radius: 5px;
-  background: linear-gradient(145deg, #f18c8e, #f3ecd9);
+  background: linear-gradient(145deg, #f18c8e, #d85062);
   box-shadow:  5px 5px 35px #9d9d9d,
               -5px -5px 35px #ffffff;
 }
@@ -79,7 +79,7 @@
 
   margin-top: 10%;
   padding: 25px;
-  background: linear-gradient(145deg, #f18c8e, #f3ecd9);
+  background: linear-gradient(145deg, #f18c8e, #d85062);
 }
 .card-login-title {
   display: flex;
