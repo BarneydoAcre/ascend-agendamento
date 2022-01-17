@@ -66,10 +66,10 @@ a {
 }
 
 .btn-menu {
-    background: linear-gradient(145deg, #ed6e70, #ff9595);
+    background: linear-gradient(145deg, #ed6e70, #d85062);
 }
 .btn-menu-item {
-    background: linear-gradient(145deg, #ed6e70, #ff9595);
+    background: linear-gradient(145deg, #ed6e70, #d85062);
 }
 
 .folium-map {
