@@ -5,17 +5,23 @@ from django.contrib.auth.models import User
 
 
 class Service(models.Model):
-    title = models.CharField(max_length=50)
-    desc =  models.CharField(max_length=150, blank=True)
-    image = models.FileField(upload_to='app/static/public/service_images/', blank=True)
-    price = models.FloatField()
-    sold_off = models.BooleanField(default=False)
+    title = models.CharField('Titulo',max_length=50)
+    desc =  models.CharField('Descrição', max_length=150, blank=True)
+    image = models.FileField('Imagem', upload_to='app/static/public/service_images/', blank=True)
+    price = models.FloatField('Preço')
+    sold_off = models.BooleanField(u'A venda?', default=False)
     
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name, verbose_name_plural = "Serviço", "Serviços"
+        ordering = ('title',)
+
     def __str__(self):
         return self.title
+
+
 
 
 class Availability(models.Model):
@@ -46,12 +52,16 @@ class Availability(models.Model):
         (6, "Sexta-Feira"),
         (7, "Sábado"),
     )
-    weekly_day = models.IntegerField(choices=weekly_day_choices, blank=False)
-    daily_hour = models.IntegerField(choices=daily_hour_choices, blank=False)
-    busy = models.BooleanField(default=False)
+    weekly_day = models.IntegerField('Dia da semana', choices=weekly_day_choices, blank=False)
+    daily_hour = models.IntegerField('Horário do dia', choices=daily_hour_choices, blank=False)
+    busy = models.BooleanField('Ocupado', default=False)
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name, verbose_name_plural = "Disponibilidade", "Disponibilidades"
+        ordering = ("weekly_day","daily_hour")
 
     def __str__(self):
         title_return = str(self.get_weekly_day_display()) + ' | ' + str(self.get_daily_hour_display())
@@ -59,16 +69,20 @@ class Availability(models.Model):
         
 
 class Order(models.Model):
-    user = models.ForeignKey('Person', on_delete=models.PROTECT)
-    service = models.ForeignKey("Service", on_delete=models.PROTECT)
+    user = models.ForeignKey('Person', verbose_name="Pessoa",on_delete=models.PROTECT)
+    service = models.ForeignKey("Service", verbose_name="Serviço", on_delete=models.PROTECT)
     availability = models.ForeignKey(
         "Availability", 
+        verbose_name="Disponibilidade",
         on_delete=models.PROTECT,
         limit_choices_to={'busy': False})
-    telefone = models.CharField(max_length=15, blank=True)
+    telefone = models.CharField("Telefone", max_length=15, blank=True)
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name, verbose_name_plural = "Pedido", "Pedidos"
 
     def __str__(self):
         title_return = str(self.user) + ' | ' + str(self.service) + ' | ' + str(self.availability)

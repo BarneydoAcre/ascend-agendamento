@@ -1,6 +1,7 @@
 from django.contrib import admin
-from . import models
+from .models import *
 
-admin.site.register(models.Service)
-admin.site.register(models.Availability)
-admin.site.register(models.Order)
+
+admin.site.register(Service)
+admin.site.register(Availability)
+admin.site.register(Order)

@@ -117,6 +117,12 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+ugettext = lambda s: s
+LANGUAGES = (
+    ('pt-BR', ugettext(u'Português')),
+    ('en-US', ugettext(u'Inglês')),
+)
+
 USE_TZ = True
 
 

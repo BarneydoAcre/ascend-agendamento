@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -10,7 +10,7 @@ import json
 def home(request):
     data = {}
     data['item'] = Service.objects.all()
-    data['aval'] = Availability.objects.all().order_by('id')
+    data['aval'] = Availability.objects.all().order_by('-id')
     data['form_order'] = CreateOrder()
 
     db = CreateOrder()
