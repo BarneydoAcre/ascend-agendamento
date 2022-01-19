@@ -10,7 +10,7 @@ import json
 def home(request):
     data = {}
     data['item'] = Service.objects.all()
-    data['aval'] = Availability.objects.all()
+    data['aval'] = Availability.objects.all().order_by('id')
     data['form_order'] = CreateOrder()
 
     db = CreateOrder()
