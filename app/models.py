@@ -9,7 +9,7 @@ class Service(models.Model):
     desc =  models.CharField('Descrição', max_length=150, blank=True)
     image = models.FileField('Imagem', upload_to='app/static/public/service_images/', blank=True)
     price = models.FloatField('Preço')
-    sold_off = models.BooleanField(u'A venda?', default=False)
+    sold_off = models.BooleanField(u'Não vender?', default=False)
     
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
