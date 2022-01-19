@@ -78,3 +78,15 @@ a {
 
     box-shadow:  4px 4px 20px 1px #7e7e7e;
 }
+.btn-cancelar-agendamento {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #d80012;
+    width: auto; 
+    border: none;
+    min-height: 140px;
+    width: 10%;
+    min-width: 30px;
+}

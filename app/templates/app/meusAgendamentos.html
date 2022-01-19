@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}M.I. Studio | Meus Agendamentos{% endblock %}
+
+{% block content %}
+    {% for o in order %}
+        {% for i in item %}
+                {% if o.service.id == i.id %}
+                    <div class="card">
+                        <img
+                        class="card-img"
+                        src="{% static i.image|cut:'app/static/' %}"
+                        />
+                        <div class="card-desc">
+                            <h5 class="card-title" style=''><strong>{{ i.title }}</strong></h5>
+                            <p class="card-subtitle">{{ o.availability }}</p>
+                            <h5 class="card-price">
+                                <strong>R$ </strong>{{ i.price|floatformat:2 }}
+                            </h5>
+                        </div>
+                        <form action="/cancelar-agendamento/" method='POST'>
+                            {% csrf_token %}
+                            <input type="hidden" name='availability' value='{{ o.availability.id }}'>
+                            <input type="hidden" name='user' value='{{ o.user.id }}'>
+                            <button type="submit" class='btn-cancelar-agendamento'>
+                                <i class='material-icons-outlined'>delete</i>
+                            </button>
+                        </form>
+                    </div>
+                {% endif %}
+        {% endfor %}
+    {% endfor %}
+
+    {% for i in item %}
+        {% for o in order %}
+    <!-- Modal Agendamento -->
+    <form action='/agendamento/' method='post'>
+        <div id="modal-agendamento-{{ i.id }}" class="modal modal-fixed-footer">
+            <div class="modal-content" style=''>
+                <h5 class="card-title" style='color: #031d44;'>Agendamento</h5>
+                {% csrf_token %}
+                <br><br>
+                <input type="hidden" value='{{user.id}}' name="user" id="id_user">
+                <input type="hidden" value='{{i.id}}' name="service" id="id_service">
+                <div class="input-field">
+                    {{ form_order.availability }}
+                    <label for='id_avalaibility' id='label_id_availability'>Horários Disponíveis</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" name="telefone" maxlength="11" required id="id_telefone">
+                    <label for='id_telefone' id='label_id_telefone'>Telefone</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type='submit' class="waves-effect waves-green btn-flat">Agendar</button>
+                <a href="#" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+            </div>
+        </div>
+    </form> 
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

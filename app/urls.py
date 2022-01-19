@@ -6,5 +6,6 @@ app_name = 'app'
 urlpatterns = [
     path('', views.home, name='home'),
     path('agendamento/', views.agendar, name='agendamento'),
-    path('new-home/', views.newHome, name='newHome'),
+    path('meus-agendamentos/', views.meusAgendamentos, name='meusAgendamentos'),
+    path('cancelar-agendamento/', views.cancelarAgendamento, name='/cancelarAgendamento/'),
 ]
